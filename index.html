@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"></meta>
+  <title>Oración</title>
+  <link href="style.css" rel="stylesheet" />
+  
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"></meta>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet"></link>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+
+</head>
+<body>
+
+    <style>
+        #menu {
+        position: absolute;
+        background: #efefef;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+
+    <div id='map' style='width: 600px; height: 400px;'></div>
+    
+    <div id="menu">
+        <!-- See a list of Mapbox-hosted public styles at -->
+        <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->        
+        <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked"></input>
+        <label for="streets-v11">calles</label>
+        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite"></input>
+        <label for="satellite-v9">satélite</label>
+        <input id="light-v10" type="radio" name="rtoggle" value="light"></input>
+        <label for="light-v10">claro</label>
+        <input id="dark-v10" type="radio" name="rtoggle" value="dark"></input>
+        <label for="dark-v10">oscuro</label>
+        </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoicmljYXJkb21vIiwiYSI6ImNrNTl5eXRseTBzcW0zZG11cWZrYnc0a2gifQ.c5q6IkVdWzGjO9rmwSGjxA';
+    const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-4.775, 37.885], // starting position
+    zoom: 12 // starting zoom
+    });
+     
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
+    
+    const layerList = document.getElementById('menu');
+    const inputs = layerList.getElementsByTagName('input');
+    
+    for (const input of inputs) {
+        input.onclick = (layer) => {
+            const layerId = layer.target.id;
+            map.setStyle('mapbox://styles/mapbox/' + layerId);
+        };
+    }
+
+    </script>
+
+</body>
+</html>
