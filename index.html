@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8"></meta>
-  <title>Oración</title>
-  <link href="style.css" rel="stylesheet" />
-  
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"></meta>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet"></link>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>Oración</title>
+    <link href="style.css" rel="stylesheet" />
+    
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"></meta>
+      <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet"></link>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-</head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+  </head>
+
 <body>
 
     <style>
@@ -21,20 +36,88 @@
         }
     </style>
 
-    <div id='map' style='width: 600px; height: 400px;'></div>
-    
-    <div id="menu">
-        <!-- See a list of Mapbox-hosted public styles at -->
-        <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->        
-        <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked"></input>
-        <label for="streets-v11">calles</label>
-        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite"></input>
-        <label for="satellite-v9">satélite</label>
-        <input id="light-v10" type="radio" name="rtoggle" value="light"></input>
-        <label for="light-v10">claro</label>
-        <input id="dark-v10" type="radio" name="rtoggle" value="dark"></input>
-        <label for="dark-v10">oscuro</label>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Misericordia</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Cuarenta días por la vida</h1>
+          <p class="lead text-muted" style="padding-bottom: 2em;">Niños rezando por el proyecto "Cuarenta días por la vida" para que salga bien</p>
+          <p>
+            <div class="row">
+              <div class="col-md-8 offset-md-2 mb-6 col-12">
+                <h4 class="col-md-12 mb-12">Añadir nueva oración</h4>
+                <div class="row">
+                <div class="col-md-6 col-12">
+                    <label for="firstName"></label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Nombre" value="" required="">
+                    <div class="invalid-feedback">
+                    Es necesario introducir un nombre.
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="firstName"></label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Código postal" value="" required="">
+                    <div class="invalid-feedback">
+                    Es necesario introducir un CP.
+                    </div>
+                  </div>
+                <div class="col-md-12 mb-6" style="padding-bottom: 3em; padding-top: 1em;">
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar oración</button>
+                </div>  
+              </div>    
+            </div>          
+            </div>
+          </p>
+        <div style="padding-bottom: 80px;">
+          <div class="row">
+            <h4 class="col-md-10 offset-md-1 mb-3 col-12">Mapa de oraciones</h4>
+          </div>
+          
+                <div class="col-md-8 offset-md-2 mb-6 col-12" id='map' style='width: 1280px; height: 400px;'></div>
+                
+                <div id="menu" class="col-10 offset-col-1">
+                    <!-- See a list of Mapbox-hosted public styles at -->
+                    <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->        
+                    <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked"></input>
+                    <label for="streets-v11">calles</label>
+                    <input id="satellite-v9" type="radio" name="rtoggle" value="satellite"></input>
+                    <label for="satellite-v9">satélite</label>
+                    <input id="light-v10" type="radio" name="rtoggle" value="light"></input>
+                    <label for="light-v10">claro</label>
+                    <input id="dark-v10" type="radio" name="rtoggle" value="dark"></input>
+                    <label for="dark-v10">oscuro</label>
+                </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    
+    
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoicmljYXJkb21vIiwiYSI6ImNrNTl5eXRseTBzcW0zZG11cWZrYnc0a2gifQ.c5q6IkVdWzGjO9rmwSGjxA';
@@ -59,7 +142,64 @@
         };
     }
 
+
+    const geojson = {
+      type: 'FeatureCollection',
+      features: [
+        {
+          geometry: {
+            type: 'Point',
+            coordinates: [-0, 0]
+          },
+          properties: {
+            title: '<Default>',
+            description: '00000'
+          }
+        }
+      ]
+    };
+
+    function addGeo(coordX, coordY, city, cp)
+    {
+        newPoint = {
+            geometry: {
+              type: 'Point',
+              coordinates: [coordX, coordY]
+            },
+            properties: {
+              title: city,
+              description: cp
+            }
+          };
+
+        geojson.features.push(newPoint);
+    }
+
+    addGeo(-4.785909, 37.880405, "Córdoba", 14004);
+
+
+      // add markers to map
+      for (const { geometry, properties } of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el).setLngLat(geometry.coordinates).setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(`<h4>${properties.title}</h4><p>${properties.description}</p>`)
+        ).addTo(map);
+      }
+
     </script>
 
-</body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+  </body>
 </html>
