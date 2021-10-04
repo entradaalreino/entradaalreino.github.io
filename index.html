@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -20,9 +19,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
   </head>
 
 <body>
@@ -35,7 +31,6 @@
         font-family: 'Open Sans', sans-serif;
         }
     </style>
-
 
     <header>
       <div class="collapse bg-dark" id="navbarHeader">
@@ -69,26 +64,27 @@
           <p>
             <div class="row">
               <div class="col-md-8 offset-md-2 mb-6 col-12">
-                <h4 class="col-md-12 mb-12">Añadir nueva oración</h4>
+                <form class="needs-validation" novalidate>
                 <div class="row">
-                <div class="col-md-6 col-12">
-                    <label for="firstName"></label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Nombre" value="" required="">
-                    <div class="invalid-feedback">
-                    Es necesario introducir un nombre.
+                    <div class="col-md-6 col-12">
+                        <label for="name"></label>
+                        <input type="text" class="form-control" id="name" placeholder="Nombre" value="" required="">
+                        <div class="invalid-feedback">
+                        Es necesario introducir un nombre.
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <label for="firstName"></label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Código postal" value="" required="">
-                    <div class="invalid-feedback">
-                    Es necesario introducir un CP.
-                    </div>
-                  </div>
-                <div class="col-md-12 mb-6" style="padding-bottom: 3em; padding-top: 1em;">
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar oración</button>
-                </div>  
+                    <div class="col-md-6 col-12">
+                        <label for="cp"></label>
+                        <input type="text" class="form-control" id="cp" placeholder="Código postal" value="" required="">
+                        <div class="invalid-feedback">
+                        Es necesario introducir un CP.
+                        </div>
+                      </div>
+                    <div class="col-md-12 mb-6" id="sendBtn" style="padding-bottom: 3em; padding-top: 1em;">
+                      <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar oración</button>
+                    </div>  
               </div>    
+            </form>
             </div>          
             </div>
           </p>
@@ -115,8 +111,33 @@
         </div>
       </section>
 
-    </main>
+      <!--
+      <?php
+        include("select.php");
+        $query = "SELECT iglesia,cura FROM historial WHERE cura=0 ORDER BY fecha DESC LIMIT 1";
+        $getClients = mysql_query($query);
+
+        while($row = mysql_fetch)
+
+      ?>
+    -->
     
+    <!--
+      <?php
+        $name = "Hello World";
+    ?>
+  
+    <script type="text/javascript">
+        var x = "<?php echo"$name;"?>";
+        document.write(x);
+    </script>
+  -->
+
+  <form action="select.php">
+    <input type="submit" value="click on me!">
+  </form>
+
+    </main>
     
 
     <script>
@@ -124,14 +145,69 @@
     const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-4.775, 37.885], // starting position
-    zoom: 12 // starting zoom
+    center: [-4.775, 38.885], // starting position
+    zoom: 4 // starting zoom
     });
      
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
 
+    const cities = {
+      '01': 'Álava',
+      '02': 'Albacete',
+      '03': 'Alicante',
+      '04': 'Almería',
+      '05': 'Ávila',
+      '06': 'Badajoz',
+      '07': 'Baleares',
+      '08': 'Barcelona',
+      '09': 'Burgos',
+      '10': 'Cáceres',
+      '11': 'Cádiz',
+      '12': 'Castellón',
+      '13': 'Ciudad Real',
+      '14': 'Córdoba',
+      '15': 'A Coruña',
+      '16': 'Cuenca',
+      '17': 'Girona',
+      '18': 'Granada',
+      '19': 'Guadalajara',
+      '20': 'Guipúzcoa',
+      '21': 'Huelva',
+      '22': 'Huesca',
+      '23': 'Jaén',
+      '24': 'León',
+      '25': 'Lleida',
+      '26': 'La Rioja',
+      '27': 'Lugo',
+      '28': 'Madrid',
+      '29': 'Málaga',
+      '30': 'Murcia',
+      '31': 'Navarra',
+      '32': 'Ourense',
+      '33': 'Asturias',
+      '34': 'Palencia',
+      '35': 'Las Palmas',
+      '36': 'Pontevedra',
+      '37': 'Salamanca',
+      '38': 'Tenerife',
+      '39': 'Santander',
+      '40': 'Segovia',
+      '41': 'Sevilla',
+      '42': 'Soria',
+      '43': 'Tarragona',
+      '44': 'Teruel',
+      '45': 'Toledo',
+      '46': 'Valencia',
+      '47': 'Valladolid',
+      '48': 'Vizcaya',
+      '49': 'Zamora',
+      '50': 'Zaragoza',
+      '51': 'Ceuta',
+      '52': 'Melilla'
+    }
     
+
     const layerList = document.getElementById('menu');
     const inputs = layerList.getElementsByTagName('input');
     
@@ -149,7 +225,7 @@
         {
           geometry: {
             type: 'Point',
-            coordinates: [-0, 0]
+            coordinates: [0, 0]
           },
           properties: {
             title: '<Default>',
@@ -159,7 +235,7 @@
       ]
     };
 
-    function addGeo(coordX, coordY, city, cp)
+    function addMarker(coordX, coordY, city, cp)
     {
         newPoint = {
             geometry: {
@@ -175,31 +251,151 @@
         geojson.features.push(newPoint);
     }
 
-    addGeo(-4.785909, 37.880405, "Córdoba", 14004);
+    function validateCP()
+    {
+      var cp = document.getElementById('cp').value;
+      
+      if (!isNaN(parseInt(cp)))
+        return cp >= 1000 && cp <= 52999;
+
+      return false;
+    }
+
+    function sendClicked()
+    {
+      if (validateCP())
+      {
+        // SEND FORM
+        var forms = document.getElementsByClassName('needs-validation');
+        Array.prototype.filter.call(forms, function(form) {
+          form.classList.remove("was-validated");
+          //layerList.scrollIntoView();
+        });
+
+        var name = document.getElementById('name').value;
+        var cp = document.getElementById('cp').value;
+
+        addMarker(-4.785909, 37.880405, name, cp);
+
+        document.getElementById('name').value = " ";
+        document.getElementById('cp').value = " ";
+        //window.scrollTo(window.scrollX, 1000);
+        //alert(window.scrollX);
+
+        updateMap();
+      }
+    }
 
 
+    // SELECT * FROM historial WHERE fecha > date_sub(now(), interval 30 minute) AND cura=0 ORDER BY fecha DESC
+    /*
+    var dbConnection = SQL.connect({
+    Driver: "MySQL",
+    Host: "sql2.freesqldatabase.com",
+    Port: 3306,
+    Database: "sql2318442",
+    UserName: "sql2318442",
+    Password: "xM1%xK7!" });
+    var sql = "SELECT iglesia,cura FROM historial WHERE cura=0 ORDER BY fecha DESC LIMIT 1";
+    var result = dbConnection.query(sql);
+    if (!result.isValid) {
+        test.fail("Entry not found.");
+    } else {
+      alert(result.value("cp") + " " + result.value("iglesia"));
+      
+        test.compare(result.value("cp"), context.userData.formValues[0]);
+        test.compare(result.value("iglesia"), context.userData.formValues[1]);
+    }
+    dbConnection.close();
+    */
+
+    /*
+    var mysql = require('mysql');
+    var conn = mysql.createConnection({
+      host: 'sql2.freesqldatabase.com',
+      database: 'sql2318442',
+      user: 'sql2318442',
+      password: 'xM1%xK7!',
+    });
+
+    conn.connect(function(error){
+      if(error){
+        throw error;
+      }else{
+        console.log('CONECTADO!');
+      }
+    });
+
+    conn.query('SELECT iglesia,cura FROM historial WHERE cura=0 ORDER BY fecha DESC LIMIT 1', function(error, filas) {
+      if (error){
+        throw error;
+      }else{
+        filas.forEach(fila => {
+          alert(fila);
+        });
+      }
+    });
+    */
+    
+
+    //addMarker(-4.785909, 37.880405, "Córdoba", 14004);
+    map.center = [-4.775, 38.885];
+
+
+    function updateMap()
+    {
       // add markers to map
       for (const { geometry, properties } of geojson.features) {
-        // create a HTML element for each feature
-        const el = document.createElement('div');
-        el.className = 'marker';
-
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el).setLngLat(geometry.coordinates).setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(`<h4>${properties.title}</h4><p>${properties.description}</p>`)
-        ).addTo(map);
+        if (properties.title != '<Default>')
+          {
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'marker';
+    
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el).setLngLat(geometry.coordinates).setPopup(
+              new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML(`<h4>${properties.title}</h4><p>${properties.description}</p>`)
+            ).addTo(map);
+          }
       }
+    }
+
+
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              else {
+                sendClicked();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+
+      updateMap();
 
     </script>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
+    
   </body>
 </html>
